@@ -7,7 +7,7 @@
 }
 
 .apr-box {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     background-color: white;
     border: solid rgba(0, 0, 0, .15);
     border-width: 1px 0;
@@ -21,7 +21,7 @@
     margin-top: 0;
     margin-bottom: 0;
     margin-right: 1.2rem;
-    width: 280px;
+    width: 240px;
     min-width: 240px;
     height: 100vh;
 }
@@ -29,7 +29,8 @@
 .apr-contents {
     display: block;
     width: 100%;
-    max-width: 1000px;
+    min-width: 700px;
+    max-width: 900px;
 }
 
 .apr-title {
