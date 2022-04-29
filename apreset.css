@@ -1,0 +1,67 @@
+.apr-main {
+    display: flex;
+    justify-content: center;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    background-color: rgba(0, 0, 0, .05);
+}
+
+.apr-box {
+    margin-bottom: 1rem;
+    background-color: white;
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: 0 .5em 1.5em rgba(0, 0, 0, .1), 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+.apr-sidebar {
+    display: block;
+    position: sticky;
+    top: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 1.2rem;
+    width: 280px;
+    min-width: 240px;
+    height: 100vh;
+}
+
+.apr-contents {
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.apr-title {
+    display: flex;
+    justify-content: center;
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.apr-title-menubox {
+    display: block;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.apr-title-menutitle {
+    display: flex;
+    justify-content: center;
+}
+
+.apr-title-menu {
+    text-decoration: none;
+}
+
+.apr-title-menu:hover {
+    text-decoration: underline;
+}
+
+.apr-content-desc {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
