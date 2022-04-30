@@ -254,7 +254,7 @@
                 let int = 4;
                 if (levelupJob == 1) int = 13;
                 // 초보자
-                while (lv < 10) {
+                while (lv < 10 && lv < level_end) {
                     lv++;
 
                     if (chRadMin) { hp += 12; mp += 10; }
@@ -272,17 +272,17 @@
                 maxHpSkillLv++;
                 maxMpSkillLv++;
                 // 전직 보너스
-                if (levelupJob == 1) {
+                if (levelupJob == 1 && lv >= 8) {
                     if (chRadMin) { mp += 100; }
                     if (chRadRand) { mp += levelupRand(100, 150); }
                     if (chRadAvg) { mp += 125; }
                     if (chRadMax) { mp += 150; }
-                } else if (levelupJob == 2 || levelupJob == 3) {
+                } else if ((levelupJob == 2 || levelupJob == 3) && lv >= 10) {
                     if (chRadMin) { hp += 200; }
                     if (chRadRand) { hp += levelupRand(200, 250); }
                     if (chRadAvg) { hp += 225; }
                     if (chRadMax) { hp += 250; }
-                } else if (levelupJob == 4 || levelupJob == 5 || levelupJob == 6) {
+                } else if ((levelupJob == 4 || levelupJob == 5 || levelupJob == 6) && lv >= 10) {
                     if (chRadMin) { hp += 125; }
                     if (chRadRand) { hp += levelupRand(100, 150) + levelupRand(25, 50); }
                     if (chRadAvg) { hp += 162; }
@@ -380,10 +380,10 @@
 
                 // 정리
                 let minmp = 0;
-                if (levelupJob == 0) minmp = 10 * lv - 5; //초
+                if (levelupJob == 0 || lv < 8 || (levelupJob != 1 && lv < 10)) minmp = 10 * lv - 5; //초
                 else if (levelupJob == 1 && lv < 30) minmp = 22 * lv - 1; // 마 1
                 else if (levelupJob == 1 && lv >= 30) minmp = 22 * lv + 449; // 마 2
-                else if (levelupJob == 2 || lv < 30) minmp = 4 * lv + 55; // 전 1 or 파
+                else if (levelupJob == 2 || (levelupJob == 3 && lv < 30)) minmp = 4 * lv + 55; // 전 1 or 파
                 else if (levelupJob == 3 && lv >= 30) minmp = 4 * lv + 155; // 전 페/스
                 else if (levelupJob == 4 && lv < 30) minmp = 14 * lv - 15; // 궁도 1
                 else if (levelupJob == 4 && lv >= 30) minmp = 14 * lv + 135; // 궁도 2
@@ -497,7 +497,7 @@
                 let chMpToInt = document.getElementById("mpwash_mptoint").checked;
                 let chPassWash = document.getElementById("mpwash_passwash").checked;
 
-                if (pint < tint)
+                if (pint > tint)
                     return;
 
                 let apr = 0;
