@@ -41,76 +41,165 @@
         </div>
         <div class="apr-contents">
             <div class="apr-box apr-content-desc">
-                <h1>계산기 모음</h1>
+                <h1>계산기</h1>
             </div>
-            <div class="apr-box apr-content-desc">
-                <h4>HP / MP에 투자된 AP 계산</h4>
-                <div class="apr-input-box row">
-                    <label for="washedap_level" class="col-sm-2 col-form-label" style="margin-top: -5px">레벨 </label>
-                    <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="레벨" id="washedap_level"></div>
-                    <label for="washedap_str" class="col-sm-2 col-form-label" style="margin-top: -5px">STR </label>
-                    <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="STR" id="washedap_str"></div>
-                    <label for="washedap_dex" class="col-sm-2 col-form-label" style="margin-top: -5px">DEX </label>
-                    <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="DEX" id="washedap_dex"></div>
-                    <label for="washedap_int" class="col-sm-2 col-form-label" style="margin-top: -5px">INT </label>
-                    <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="INT" id="washedap_int"></div>
-                    <label for="washedap_luk" class="col-sm-2 col-form-label" style="margin-top: -5px">LUK </label>
-                    <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="LUK" id="washedap_luk"></div>
-                    <h5 id="washedap_result">HP / MP에 투자된 AP :</h5>
-                    <button type="button" class="btn btn-primary" onclick="washedapCalc()">계산</button>
+            <div style="display: flex; flex-wrap: wrap;">
+                <div class="apr-box apr-content-desc" style="width: fit-content; margin-right: 1rem;">
+                    <h4>외부에 있는 AP 계산</h4>
+                    <div class="apr-input-box row">
+                        <label for="washedap_level" class="col-sm-2 col-form-label" style="margin-top: -5px">레벨 </label>
+                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="현재 레벨" id="washedap_level"></div>
+                        <label for="washedap_str" class="col-sm-2 col-form-label" style="margin-top: -5px">STR </label>
+                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="STR" id="washedap_str"></div>
+                        <label for="washedap_dex" class="col-sm-2 col-form-label" style="margin-top: -5px">DEX </label>
+                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="DEX" id="washedap_dex"></div>
+                        <label for="washedap_int" class="col-sm-2 col-form-label" style="margin-top: -5px">INT </label>
+                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="INT" id="washedap_int"></div>
+                        <label for="washedap_luk" class="col-sm-2 col-form-label" style="margin-top: -5px">LUK </label>
+                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="LUK" id="washedap_luk"></div>
+                        <h6 id="washedap_result">외부(HP / MP / AP)에 있는 AP :</h6>
+                        <button type="button" class="btn btn-primary" onclick="washedapCalc()">계산</button>
+                    </div>
+                </div>
+                <div class="apr-box apr-content-desc" style="width: fit-content; margin-right: 1rem;">
+                    <h4>기본 레벨 업 계산</h4>
+                    <div class="apr-input-box row">
+                        <div class="dropdown mb-2">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="levelup_ddm" data-bs-toggle="dropdown" aria-expanded="false">
+                                직업 선택
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="levelup_ddm">
+                                <li><button type="button" class="dropdown-item" onclick="levelupMenu(0)">초보자</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="levelupMenu(1)">마법사</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="levelupMenu(2)">전사 (파이터 계열)</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="levelupMenu(3)">전사 (페이지 / 스피어맨 계열)</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="levelupMenu(4)">궁수 / 도적</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="levelupMenu(5)">해적 (건슬링거 계열)</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="levelupMenu(6)">해적 (인파이터 계열)</button></li>
+                            </ul>
+                        </div>
+                        <label for="levelup_level" class="col-sm-2 col-form-label" style="margin-top: -5px; padding-right: 5px;">레벨 </label>
+                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="목표 레벨" id="levelup_level"></div>
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="margin-top: 5px; margin-bottom: 5px;">
+                            <input type="radio" class="btn-check" name="btnradio" id="levelup_radmin" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="levelup_radmin">최소</label>
+                            <input type="radio" class="btn-check" name="btnradio" id="levelup_radrand" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="levelup_radrand">랜덤</label>
+                            <input type="radio" class="btn-check" name="btnradio" id="levelup_radavg" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary" for="levelup_radavg">평균</label>
+                            <input type="radio" class="btn-check" name="btnradio" id="levelup_radmax" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="levelup_radmax">최대</label>
+                        </div>
+                        <div style="display: flex;">
+                            <div style="display: block; text-align:right;">
+                                <h6>HP : </h6>
+                                <h6>MP : </h6>
+                                <h6>최소 MP : </h6>
+                                <h6>여유 MP : </h6>
+                            </div>
+                            <div style="display: block">
+                                <h6 id="levelup_reshp"></h6>
+                                <h6 id="levelup_resmp"></h6>
+                                <h6 id="levelup_resminmp"></h6>
+                                <h6 id="levelup_reswashmp"></h6>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="levelupCalc()">계산</button>
+                    </div>
+                </div>
+                <div class="apr-box apr-content-desc" style="width: fit-content; margin-right: 1rem;">
+                    <h4>피작 계산</h4>
+                    <div class="apr-input-box row">
+                        <div class="dropdown mb-2">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="hpwash_ddm" data-bs-toggle="dropdown" aria-expanded="false">
+                                직업 선택
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="hpwash_ddm">
+                                <li><button type="button" class="dropdown-item" onclick="hpwashMenu(0)">초보자</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="hpwashMenu(1)">마법사 (1차)</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="hpwashMenu(2)">마법사 (2차 이상)</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="hpwashMenu(3)">전사 (1차, 2차 이상 파이터 계열)</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="hpwashMenu(4)">전사 (2차 이상 페이지 / 스피어맨 계열)</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="hpwashMenu(5)">궁수 / 도적 (1차)</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="hpwashMenu(6)">궁수 / 도적 (2차 이상)</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="hpwashMenu(7)">해적 (1차)</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="hpwashMenu(8)">해적 (2차 이상 건슬링거 계열)</button></li>
+                                <li><button type="button" class="dropdown-item" onclick="hpwashMenu(9)">해적 (2차 이상 인파이터 계열)</button></li>
+                            </ul>
+                        </div>
+                        <label for="hpwash_level" class="col-sm-2 col-form-label" style="margin-top: -5px; padding-right: 5px;">레벨 </label>
+                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="레벨" id="hpwash_level"></div>
+                        <label for="hpwash_mp" class="col-sm-2 col-form-label" style="margin-top: -5px; padding-right: 5px;">순 MP </label>
+                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="순수 MP / AP Reset으로 확인" id="hpwash_mp"></div>
+                        <div style="display: flex;">
+                            <div style="display: block; text-align:right;">
+                                <h6>최소 MP : </h6>
+                                <h6>여유 MP : </h6>
+                                <h6>APR 전환 HP : </h6>
+                                <h6>AP 활용 후 전환 HP : </h6>
+                                <h6>필요 APR : </h6>
+                                <h6>필요 캐시 : </h6>
+                            </div>
+                            <div style="display: block">
+                                <h6 id="hpwash_resminmp"></h6>
+                                <h6 id="hpwash_resmp"></h6>
+                                <h6 id="hpwash_resaprhp"></h6>
+                                <h6 id="hpwash_resaphp"></h6>
+                                <h6 id="hpwash_resapr"></h6>
+                                <h6 id="hpwash_rescash"></h6>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="hpwashCalc()">계산</button>
+                    </div>
+                </div>
+                <div class="apr-box apr-content-desc" style="width: fit-content; margin-right: 1rem;">
+                    <h4>마나작 계산</h4>
+                    <div class="apr-input-box row">
+                        <label for="mpwash_pint" class="col-sm-2 col-form-label" style="margin-top: -5px; padding-right: 5px; ">순 인트 </label>
+                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="순수 인트" id="mpwash_pint"></div>
+                        <label for="mpwash_tint" class="col-sm-2 col-form-label" style="margin-top: -5px; padding-right: 5px; ">총 인트 </label>
+                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="총합 인트 (순수 인트보다 높아야 함)" id="mpwash_tint"></div>
+                        <label for="mpwash_levelup" class="col-sm-2 col-form-label" style="margin-top: -5px; padding-right: 5px; ">레벨 업 </label>
+                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="마나작을 진행할 레벨 분량" id="mpwash_levelup"></div>
+                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" style="margin-top: 5px; margin-bottom: 5px;">
+                            <input type="checkbox" class="btn-check" id="mpwash_mptoint" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="mpwash_mptoint">INT에 재투자</label>
+                            <input type="checkbox" class="btn-check" id="mpwash_passwash" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="mpwash_passwash">마나작 건너뛰기</label>
+                        </div>
+                        <div style="display: flex;">
+                            <div style="display: block; text-align:right;">
+                                <h6>레벨업 추가 증가 MP : </h6>
+                                <h6>마나작 추가 증가 MP : </h6>
+                                <h6>총 추가 증가 MP : </h6>
+                                <h6>필요 APR : </h6>
+                                <h6>필요 캐시 : </h6>
+                            </div>
+                            <div style="display: block">
+                                <h6 id="mpwash_reslvupmp"></h6>
+                                <h6 id="mpwash_reswashmp"></h6>
+                                <h6 id="mpwash_restotalmp"></h6>
+                                <h6 id="mpwash_resapr"></h6>
+                                <h6 id="mpwash_rescash"></h6>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="mpwashCalc()">계산</button>
+                    </div>
                 </div>
             </div>
-            <div class="apr-box apr-content-desc">
-                <h4>남은 피작 계산</h4>
-                <div class="apr-input-box row">
-                    <div class="dropdown mb-2">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="mpwash_ddm" data-bs-toggle="dropdown" aria-expanded="false">
-                            직업 선택
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="mpwash_ddm">
-                            <li><button type="button" class="dropdown-item" onclick="mpwashMenu(0)">초보자</button></li>
-                            <li><button type="button" class="dropdown-item" onclick="mpwashMenu(1)">마법사 (1차)</button></li>
-                            <li><button type="button" class="dropdown-item" onclick="mpwashMenu(2)">마법사 (2차 이상)</button></li>
-                            <li><button type="button" class="dropdown-item" onclick="mpwashMenu(3)">전사 (1차, 2차 이상 파이터 계열)</button></li>
-                            <li><button type="button" class="dropdown-item" onclick="mpwashMenu(4)">전사 (2차 이상 페이지 / 스피어맨 계열)</button></li>
-                            <li><button type="button" class="dropdown-item" onclick="mpwashMenu(5)">궁수 / 도적 (1차)</button></li>
-                            <li><button type="button" class="dropdown-item" onclick="mpwashMenu(6)">궁수 / 도적 (2차 이상)</button></li>
-                            <li><button type="button" class="dropdown-item" onclick="mpwashMenu(7)">해적 (1차)</button></li>
-                            <li><button type="button" class="dropdown-item" onclick="mpwashMenu(8)">해적 (2차 이상)</button></li>
-                        </ul>
-                    </div>
-                    <label for="mpwash_level" class="col-sm-2 col-form-label" style="margin-top: -5px">레벨 </label>
-                    <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="레벨" id="mpwash_level"></div>
-                    <label for="mpwash_mp" class="col-sm-2 col-form-label" style="margin-top: -5px">순 MP </label>
-                    <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="순 MP" id="mpwash_mp"></div>
-                    <div style="display: flex;">
-                        <div style="display: block; text-align:right;">
-                            <h6>여유 MP : </h6>
-                            <h6>APR 전환 HP : </h6>
-                            <h6>AP 활용 후 전환 HP : </h6>
-                            <h6>필요 APR : </h6>
-                            <h6>필요 캐시 : </h6>
-                        </div>
-                        <div style="display: block">
-                            <h6 id="mpwash_resmp"></h6>
-                            <h6 id="mpwash_resaprhp"></h6>
-                            <h6 id="mpwash_resaphp"></h6>
-                            <h6 id="mpwash_resapr"></h6>
-                            <h6 id="mpwash_rescash"></h6>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary" onclick="mpwashCalc()">계산</button>
-                </div>
-            </div>
+
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script>
+            //
+            // HP / MP에 투자된 AP 계산
+            //
             function washedapCalc() {
-                let level = document.getElementById("washedap_level").value;
-                let str = document.getElementById("washedap_str").value;
-                let dex = document.getElementById("washedap_dex").value;
-                let int = document.getElementById("washedap_int").value;
-                let luk = document.getElementById("washedap_luk").value;
+                let level = parseInt(document.getElementById("washedap_level").value);
+                let str = parseInt(document.getElementById("washedap_str").value);
+                let dex = parseInt(document.getElementById("washedap_dex").value);
+                let int = parseInt(document.getElementById("washedap_int").value);
+                let luk = parseInt(document.getElementById("washedap_luk").value);
 
                 let total_ap;
                 if (level < 70)
@@ -127,83 +216,317 @@
                     document.getElementById("washedap_result").innerHTML = "HP / MP에 투자된 AP : 입력 오류";
             }
 
-            let job = -1;
-            function mpwashMenu(jobCode) {
-                job = jobCode;
-                if (job == 0)
-                    document.getElementById("mpwash_ddm").innerHTML = "초보자";
-                else if (job == 1)
-                    document.getElementById("mpwash_ddm").innerHTML = "마법사 (1차)";
-                else if (job == 2)
-                    document.getElementById("mpwash_ddm").innerHTML = "마법사 (2차 이상)";
-                else if (job == 3)
-                    document.getElementById("mpwash_ddm").innerHTML = "전사 (1차, 2차 이상 파이터 계열)";
-                else if (job == 4)
-                    document.getElementById("mpwash_ddm").innerHTML = "전사 (2차 이상 페이지 / 스피어맨 계열)";
-                else if (job == 5)
-                    document.getElementById("mpwash_ddm").innerHTML = "궁수 / 도적 (1차)";
-                else if (job == 6)
-                    document.getElementById("mpwash_ddm").innerHTML = "궁수 / 도적 (2차 이상)";
-                else if (job == 7)
-                    document.getElementById("mpwash_ddm").innerHTML = "해적 (1차)";
-                else if (job == 8)
-                    document.getElementById("mpwash_ddm").innerHTML = "해적 (2차 이상)";
+            //
+            // 기본 레벨 업 계산
+            //
+            let levelupJob = -1;
+            function levelupMenu(levelupJobCode) {
+                levelupJob = levelupJobCode;
+                if (levelupJob == 0)
+                    document.getElementById("levelup_ddm").innerHTML = "초보자";
+                else if (levelupJob == 1)
+                    document.getElementById("levelup_ddm").innerHTML = "마법사";
+                else if (levelupJob == 2)
+                    document.getElementById("levelup_ddm").innerHTML = "전사 (파이터 계열)";
+                else if (levelupJob == 3)
+                    document.getElementById("levelup_ddm").innerHTML = "전사 (페이지 / 스피어맨 계열)";
+                else if (levelupJob == 4)
+                    document.getElementById("levelup_ddm").innerHTML = "궁수 / 도적";
+                else if (levelupJob == 5)
+                    document.getElementById("levelup_ddm").innerHTML = "해적 (건슬링거 계열)";
+                else if (levelupJob == 6)
+                    document.getElementById("levelup_ddm").innerHTML = "해적 (인파이터 계열)";
             }
-            function mpwashCalc() {
-                if (job == -1)
+            function levelupRand(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+            function levelupCalc() {
+                if (levelupJob == -1)
                     return;
-                let level = document.getElementById("mpwash_level").value;
-                let mp = document.getElementById("mpwash_mp").value;
+                let level_end = parseInt(document.getElementById("levelup_level").value);
+                let chRadMin = document.getElementById("levelup_radmin").checked;
+                let chRadRand = document.getElementById("levelup_radrand").checked;
+                let chRadAvg = document.getElementById("levelup_radavg").checked;
+                let chRadMax = document.getElementById("levelup_radmax").checked;
+                let lv = 1;
+                let hp = 50;
+                let mp = 5;
+                let int = 4;
+                if (levelupJob == 1) int = 13;
+                // 초보자
+                while (lv < 10) {
+                    lv++;
+
+                    if (chRadMin) { hp += 12; mp += 10; }
+                    if (chRadRand) { hp += levelupRand(12, 16); mp += levelupRand(10, 12);}
+                    if (chRadAvg) { hp += 14; mp += 11; }
+                    if (chRadMax) { hp += 16; mp += 12; }
+
+                    if (levelupJob == 1 && lv == 8)
+                        break;
+                }
+                // 1차
+                let maxHpSkillLv = -5;
+                let maxMpSkillLv = -5;
+                // 스킬 포인트 1
+                maxHpSkillLv++;
+                maxMpSkillLv++;
+                // 전직 보너스
+                if (levelupJob == 1) {
+                    if (chRadMin) { mp += 100; }
+                    if (chRadRand) { mp += levelupRand(100, 150); }
+                    if (chRadAvg) { mp += 125; }
+                    if (chRadMax) { mp += 150; }
+                } else if (levelupJob == 2 || levelupJob == 3) {
+                    if (chRadMin) { hp += 200; }
+                    if (chRadRand) { hp += levelupRand(200, 250); }
+                    if (chRadAvg) { hp += 225; }
+                    if (chRadMax) { hp += 250; }
+                } else if (levelupJob == 4 || levelupJob == 5 || levelupJob == 6) {
+                    if (chRadMin) { hp += 125; }
+                    if (chRadRand) { hp += levelupRand(100, 150) + levelupRand(25, 50); }
+                    if (chRadAvg) { hp += 162; }
+                    if (chRadMax) { hp += 200; }
+                }
+                // -------------
+                // 2차
+                let maxHpSkill2Lv = 0;
+                // -------------
+                while (lv < level_end) {
+                    lv++;
+                    if (levelupJob == 0) {
+                        if (chRadMin) { hp += 12; mp += 10; }
+                        if (chRadRand) { hp += levelupRand(12, 16); mp += levelupRand(10, 12); }
+                        if (chRadAvg) { hp += 14; mp += 11; }
+                        if (chRadMax) { hp += 16; mp += 12; }
+                    }
+                    if (levelupJob == 1) {
+                        let mpbonus = maxMpSkillLv * 2;
+                        if (mpbonus < 0) mpbonus = 0;
+                        if (chRadMin) { hp += 10; mp += 22 + mpbonus; }
+                        if (chRadRand) { hp += levelupRand(10, 14); mp += levelupRand(22, 24) + mpbonus; }
+                        if (chRadAvg) { hp += 12; mp += 23 + mpbonus; }
+                        if (chRadMax) { hp += 14; mp += 24 + mpbonus; }
+                        if (maxMpSkillLv < 10) {
+                            maxMpSkillLv += 3;
+                            if (maxMpSkillLv > 10)
+                                maxMpSkillLv = 10;
+                        }
+                        if (lv == 30) {
+                            if (chRadMin) { mp += 450; }
+                            if (chRadRand) { mp += levelupRand(450, 500); }
+                            if (chRadAvg) { mp += 475; }
+                            if (chRadMax) { mp += 500; }
+                        }
+                    }
+                    if (levelupJob == 2 || levelupJob == 3) {
+                        let hpbonus = maxHpSkillLv * 4;
+                        if (hpbonus < 0) hpbonus = 0;
+                        if (chRadMin) { hp += 24 + hpbonus; mp += 4; }
+                        if (chRadRand) { hp += levelupRand(24, 28) + hpbonus; mp += levelupRand(4, 6); }
+                        if (chRadAvg) { hp += 26 + hpbonus; mp += 5; }
+                        if (chRadMax) { hp += 28 + hpbonus; mp += 6; }
+                        if (maxHpSkillLv < 10) {
+                            maxHpSkillLv += 3;
+                            if (maxHpSkillLv > 10)
+                                maxHpSkillLv = 10;
+                        }
+                        if (lv == 30 && levelupJob == 2) {
+                            if (chRadMin) { hp += 300; }
+                            if (chRadRand) { hp += levelupRand(300, 350); }
+                            if (chRadAvg) { hp += 325; }
+                            if (chRadMax) { hp += 350; }
+                        } else if (lv == 30 && levelupJob == 3) {
+                            if (chRadMin) { mp += 100; }
+                            if (chRadRand) { mp += levelupRand(100, 150); }
+                            if (chRadAvg) { mp += 125; }
+                            if (chRadMax) { mp += 150; }
+                        }
+                    }
+                    if (levelupJob == 4) {
+                        if (chRadMin) { hp += 20; mp += 14; }
+                        if (chRadRand) { hp += levelupRand(20, 24); mp += levelupRand(14, 16); }
+                        if (chRadAvg) { hp += 22; mp += 15; }
+                        if (chRadMax) { hp += 24; mp += 16; }
+                        if (lv == 30) {
+                            if (chRadMin) { hp += 300; mp += 150;}
+                            if (chRadRand) { hp += levelupRand(300, 350); mp += levelupRand(150, 200);}
+                            if (chRadAvg) { hp += 325; mp += 175;}
+                            if (chRadMax) { hp += 350; mp += 200;}
+                        }
+                    }
+                    if (levelupJob == 5 || levelupJob == 6) {
+                        let hpbonus = maxHpSkill2Lv * 3;
+                        if (lv < 30 || levelupJob != 6)
+                            hpbonus = 0;
+                        if (chRadMin) { hp += 22 + hpbonus; mp += 18; }
+                        if (chRadRand) { hp += levelupRand(22, 28) + hpbonus; mp += levelupRand(18, 23); }
+                        if (chRadAvg) { hp += 25 + hpbonus; mp += 20.5; }
+                        if (chRadMax) { hp += 28 + hpbonus; mp += 23; }
+                        if (levelupJob == 6 && lv > 30 && maxHpSkill2Lv < 10) {
+                            maxHpSkill2Lv += 3;
+                            if (maxHpSkill2Lv > 10)
+                                maxHpSkill2Lv = 10;
+                        }
+                        if (lv == 30) {
+                            if (chRadMin) { hp += 200; mp += 150; }
+                            if (chRadRand) { hp += levelupRand(200, 250); mp += levelupRand(150, 175); }
+                            if (chRadAvg) { hp += 225; mp += 112.5; }
+                            if (chRadMax) { hp += 250; mp += 175; }
+                            if (levelupJob == 6) { maxHpSkill2Lv++; }
+                        }
+                    }
+                }
+
+                // 정리
+                let minmp = 0;
+                if (levelupJob == 0) minmp = 10 * lv - 5; //초
+                else if (levelupJob == 1 && lv < 30) minmp = 22 * lv - 1; // 마 1
+                else if (levelupJob == 1 && lv >= 30) minmp = 22 * lv + 449; // 마 2
+                else if (levelupJob == 2 || lv < 30) minmp = 4 * lv + 55; // 전 1 or 파
+                else if (levelupJob == 3 && lv >= 30) minmp = 4 * lv + 155; // 전 페/스
+                else if (levelupJob == 4 && lv < 30) minmp = 14 * lv - 15; // 궁도 1
+                else if (levelupJob == 4 && lv >= 30) minmp = 14 * lv + 135; // 궁도 2
+                else if ((levelupJob == 5 || levelupJob == 6) && lv < 30) minmp = 18 * lv - 55; // 해적 1
+                else if ((levelupJob == 5 || levelupJob == 6) && lv >= 30) minmp = 18 * lv + 95; // 해적 건
+                let washmp = mp - minmp;
+                document.getElementById("levelup_reshp").innerHTML = "&nbsp;" + hp;
+                document.getElementById("levelup_resmp").innerHTML = "&nbsp;" + mp;
+                document.getElementById("levelup_resminmp").innerHTML = "&nbsp;" + minmp;
+                document.getElementById("levelup_reswashmp").innerHTML = "&nbsp;" + washmp;
+            }
+
+            //
+            // 피작 계산
+            //
+            let hpwashJob = -1;
+            function hpwashMenu(hpwashJobCode) {
+                hpwashJob = hpwashJobCode;
+                if (hpwashJob == 0)
+                    document.getElementById("hpwash_ddm").innerHTML = "초보자";
+                else if (hpwashJob == 1)
+                    document.getElementById("hpwash_ddm").innerHTML = "마법사 (1차)";
+                else if (hpwashJob == 2)
+                    document.getElementById("hpwash_ddm").innerHTML = "마법사 (2차 이상)";
+                else if (hpwashJob == 3)
+                    document.getElementById("hpwash_ddm").innerHTML = "전사 (1차, 2차 이상 파이터 계열)";
+                else if (hpwashJob == 4)
+                    document.getElementById("hpwash_ddm").innerHTML = "전사 (2차 이상 페이지 / 스피어맨 계열)";
+                else if (hpwashJob == 5)
+                    document.getElementById("hpwash_ddm").innerHTML = "궁수 / 도적 (1차)";
+                else if (hpwashJob == 6)
+                    document.getElementById("hpwash_ddm").innerHTML = "궁수 / 도적 (2차 이상)";
+                else if (hpwashJob == 7)
+                    document.getElementById("hpwash_ddm").innerHTML = "해적 (1차)";
+                else if (hpwashJob == 8)
+                    document.getElementById("hpwash_ddm").innerHTML = "해적 (2차 이상 건슬링거 계열)";
+                else if (hpwashJob == 9)
+                    document.getElementById("hpwash_ddm").innerHTML = "해적 (2차 이상 인파이터 계열)";
+            }
+            function hpwashCalc() {
+                if (hpwashJob == -1)
+                    return;
+                let level = parseInt(document.getElementById("hpwash_level").value);
+                let mp = parseInt(document.getElementById("hpwash_mp").value);
 
                 let minmp = 0;
-                if (job == 0) minmp = 10 * level - 5;
-                else if (job == 1) minmp = 22 * level - 1;
-                else if (job == 2) minmp = 22 * level + 449;
-                else if (job == 3) minmp = 4 * level + 55;
-                else if (job == 4) minmp = 4 * level + 155;
-                else if (job == 5) minmp = 14 * level - 15;
-                else if (job == 6) minmp = 14 * level + 135;
-                else if (job == 7) minmp = 18 * level - 55;
-                else if (job == 8) minmp = 18 * level + 95;
+                if (hpwashJob == 0) minmp = 10 * level - 5;
+                else if (hpwashJob == 1) minmp = 22 * level - 1;
+                else if (hpwashJob == 2) minmp = 22 * level + 449;
+                else if (hpwashJob == 3) minmp = 4 * level + 55;
+                else if (hpwashJob == 4) minmp = 4 * level + 155;
+                else if (hpwashJob == 5) minmp = 14 * level - 15;
+                else if (hpwashJob == 6) minmp = 14 * level + 135;
+                else if (hpwashJob == 7) minmp = 18 * level - 55;
+                else if (hpwashJob == 8) minmp = 18 * level + 95;
+                else if (hpwashJob == 9) minmp = 18 * level + 95;
                 let mpwash = mp - minmp;
                 if (mpwash < 0) mpwash = 0;
 
                 let apr = 0;
-                if (job == 0) apr = Math.floor(mpwash / 8);
-                else if (job == 1) apr = Math.floor(mpwash / 30);
-                else if (job == 2) apr = Math.floor(mpwash / 30);
-                else if (job == 3) apr = Math.floor(mpwash / 4);
-                else if (job == 4) apr = Math.floor(mpwash / 4);
-                else if (job == 5) apr = Math.floor(mpwash / 12);
-                else if (job == 6) apr = Math.floor(mpwash / 12);
-                else if (job == 7) apr = Math.floor(mpwash / 16);
-                else if (job == 8) apr = Math.floor(mpwash / 16);
+                if (hpwashJob == 0) apr = Math.floor(mpwash / 8);
+                else if (hpwashJob == 1) apr = Math.floor(mpwash / 30);
+                else if (hpwashJob == 2) apr = Math.floor(mpwash / 30);
+                else if (hpwashJob == 3) apr = Math.floor(mpwash / 4);
+                else if (hpwashJob == 4) apr = Math.floor(mpwash / 4);
+                else if (hpwashJob == 5) apr = Math.floor(mpwash / 12);
+                else if (hpwashJob == 6) apr = Math.floor(mpwash / 12);
+                else if (hpwashJob == 7) apr = Math.floor(mpwash / 16);
+                else if (hpwashJob == 8) apr = Math.floor(mpwash / 16);
+                else if (hpwashJob == 9) apr = Math.floor(mpwash / 16);
 
                 let hpwashApr = 0;
-                if (job == 0) hpwashApr = Math.floor(mpwash / 8) * 8;
-                else if (job == 1) hpwashApr = Math.floor(mpwash / 30) * 6;
-                else if (job == 2) hpwashApr = Math.floor(mpwash / 30) * 6;
-                else if (job == 3) hpwashApr = Math.floor(mpwash / 4) * 20;
-                else if (job == 4) hpwashApr = Math.floor(mpwash / 4) * 20;
-                else if (job == 5) hpwashApr = Math.floor(mpwash / 12) * 16;
-                else if (job == 6) hpwashApr = Math.floor(mpwash / 12) * 16;
-                else if (job == 7) hpwashApr = Math.floor(mpwash / 16) * 18;
-                else if (job == 8) hpwashApr = Math.floor(mpwash / 16) * 18;
+                if (hpwashJob == 0) hpwashApr = Math.floor(mpwash / 8) * 8;
+                else if (hpwashJob == 1) hpwashApr = Math.floor(mpwash / 30) * 6;
+                else if (hpwashJob == 2) hpwashApr = Math.floor(mpwash / 30) * 6;
+                else if (hpwashJob == 3) hpwashApr = Math.floor(mpwash / 4) * 20;
+                else if (hpwashJob == 4) hpwashApr = Math.floor(mpwash / 4) * 20;
+                else if (hpwashJob == 5) hpwashApr = Math.floor(mpwash / 12) * 16;
+                else if (hpwashJob == 6) hpwashApr = Math.floor(mpwash / 12) * 16;
+                else if (hpwashJob == 7) hpwashApr = Math.floor(mpwash / 16) * 18;
+                else if (hpwashJob == 8) hpwashApr = Math.floor(mpwash / 16) * 18;
+                else if (hpwashJob == 9) hpwashApr = Math.floor(mpwash / 16) * 18;
 
                 let hpwashAp = 0;
-                if (job == 0) hpwashAp = Math.floor(mpwash / 8) * 10;
-                else if (job == 1) hpwashAp = Math.floor(mpwash / 30) * 8;
-                else if (job == 2) hpwashAp = Math.floor(mpwash / 30) * 8;
-                else if (job == 3) hpwashAp = Math.floor(mpwash / 4) * 20;
-                else if (job == 4) hpwashAp = Math.floor(mpwash / 4) * 20;
-                else if (job == 5) hpwashAp = Math.floor(mpwash / 12) * 18;
-                else if (job == 6) hpwashAp = Math.floor(mpwash / 12) * 18;
-                else if (job == 7) hpwashAp = Math.floor(mpwash / 16) * 18;
-                else if (job == 8) hpwashAp = Math.floor(mpwash / 16) * 18;
+                if (hpwashJob == 0) hpwashAp = Math.floor(mpwash / 8) * 10;
+                else if (hpwashJob == 1) hpwashAp = Math.floor(mpwash / 30) * 8;
+                else if (hpwashJob == 2) hpwashAp = Math.floor(mpwash / 30) * 8;
+                else if (hpwashJob == 3) hpwashAp = Math.floor(mpwash / 4) * 52;
+                else if (hpwashJob == 4) hpwashAp = Math.floor(mpwash / 4) * 52;
+                else if (hpwashJob == 5) hpwashAp = Math.floor(mpwash / 12) * 18;
+                else if (hpwashJob == 6) hpwashAp = Math.floor(mpwash / 12) * 18;
+                else if (hpwashJob == 7) hpwashAp = Math.floor(mpwash / 16) * 18;
+                else if (hpwashJob == 8) hpwashAp = Math.floor(mpwash / 16) * 18;
+                else if (hpwashJob == 9) hpwashAp = Math.floor(mpwash / 16) * 38;
 
-                document.getElementById("mpwash_resmp").innerHTML = "&nbsp;" + mpwash;
-                document.getElementById("mpwash_resaprhp").innerHTML = "&nbsp;" + hpwashApr;
-                document.getElementById("mpwash_resaphp").innerHTML = "&nbsp;" + hpwashAp;
+                document.getElementById("hpwash_resminmp").innerHTML = "&nbsp;" + minmp;
+                document.getElementById("hpwash_resmp").innerHTML = "&nbsp;" + mpwash;
+                document.getElementById("hpwash_resaprhp").innerHTML = "&nbsp;" + hpwashApr;
+                document.getElementById("hpwash_resaphp").innerHTML = "&nbsp;" + hpwashAp;
+                document.getElementById("hpwash_resapr").innerHTML = "&nbsp;" + apr + "개";
+                document.getElementById("hpwash_rescash").innerHTML = "&nbsp;" + (apr * 3100) + "NX";
+            }
+
+            //
+            // 마나작 계산
+            //
+            function mpwashCalc() {
+                let pint = parseInt(document.getElementById("mpwash_pint").value);
+                let tint = parseInt(document.getElementById("mpwash_tint").value);
+                let levelup = parseInt(document.getElementById("mpwash_levelup").value);
+                let chMpToInt = document.getElementById("mpwash_mptoint").checked;
+                let chPassWash = document.getElementById("mpwash_passwash").checked;
+
+                if (pint < tint)
+                    return;
+
+                let apr = 0;
+                let levelupmp = 0;
+                let washmp = 0;
+                for (let i = 0; i < levelup; i++) {
+                    levelupmp += Math.floor(tint / 10);
+                    if (!chPassWash) {
+                        for (let j = 0; j < 5; j++) {
+                            apr++;
+                            washmp += Math.floor(pint / 10) - 2;
+                            if (chMpToInt) {
+                                pint++;
+                                tint++;
+                            }
+                        }
+                    } else {
+                        if (chMpToInt) {
+                            console.log(tint);
+                            pint += 5;
+                            tint += 5;
+                            console.log(tint);
+                        }
+                    }
+                }
+
+                document.getElementById("mpwash_reslvupmp").innerHTML = "&nbsp;" + levelupmp;
+                document.getElementById("mpwash_reswashmp").innerHTML = "&nbsp;" + washmp;
+                document.getElementById("mpwash_restotalmp").innerHTML = "&nbsp;" + (levelupmp + washmp);
                 document.getElementById("mpwash_resapr").innerHTML = "&nbsp;" + apr + "개";
                 document.getElementById("mpwash_rescash").innerHTML = "&nbsp;" + (apr * 3100) + "NX";
             }
