@@ -133,7 +133,7 @@
                                 <h6>여유 MP : </h6>
                                 <h6>APR 피작 HP : </h6>
                                 <h6>AP 활용 피작 HP : </h6>
-                                <h6>피작 가능 APR : </h6>
+                                <h6>피작 소비 APR : </h6>
                                 <h6>APR 캐시 비용 : </h6>
                             </div>
                             <div style="display: block">
@@ -152,23 +152,23 @@
                     <h4>마나작 계산</h4>
                     <div class="apr-input-box row">
                         <label for="mpwash_pint" class="col-sm-2 col-form-label" style="margin-top: -5px; padding-right: 5px; ">순 인트 </label>
-                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="순수 인트" id="mpwash_pint"></div>
+                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="시작 순 인트" id="mpwash_pint"></div>
                         <label for="mpwash_tint" class="col-sm-2 col-form-label" style="margin-top: -5px; padding-right: 5px; ">총 인트 </label>
-                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="총합 인트 (순수 인트보다 높아야 함)" id="mpwash_tint"></div>
+                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="시작 총 인트 (순 인트보다 높아야 함)" id="mpwash_tint"></div>
                         <label for="mpwash_levelup" class="col-sm-2 col-form-label" style="margin-top: -5px; padding-right: 5px; ">레벨 업 </label>
-                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="마나작을 진행할 레벨 분량" id="mpwash_levelup"></div>
+                        <div class="col-sm-10"><input type="number" class="form-control form-control-sm" placeholder="마나작을 진행 할 레벨 분량" id="mpwash_levelup"></div>
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" style="margin-top: 5px; margin-bottom: 5px;">
                             <input type="checkbox" class="btn-check" id="mpwash_mptoint" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="mpwash_mptoint">INT에 재투자</label>
+                            <label class="btn btn-outline-primary" for="mpwash_mptoint">인트에 재투자</label>
                             <input type="checkbox" class="btn-check" id="mpwash_passwash" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="mpwash_passwash">마나작 안함</label>
+                            <label class="btn btn-outline-primary" for="mpwash_passwash">마나작 안 함</label>
                         </div>
                         <div style="display: flex;">
                             <div style="display: block; text-align:right;">
                                 <h6>레벨업 총 인트 효과 MP : </h6>
                                 <h6>마나작 순 인트 효과 MP : </h6>
                                 <h6>최종 인트 효과 MP : </h6>
-                                <h6>마나작 필요 APR : </h6>
+                                <h6>마나작 소비 APR : </h6>
                                 <h6>APR 캐시 비용 : </h6>
                             </div>
                             <div style="display: block">
@@ -187,24 +187,31 @@
                 <h4>외부에 있는 AP 계산</h4>
                 <div style="width: fit-content; margin-right: 1rem;">
                     <h6>STR, DEX, INT, LUK에 투자하지 않은 AP의 총 합을 계산합니다.</h6>
-                    <h6>스텟을 4로 설정하여 해당 레벨까지 활용할 수 있는 AP의 수량을 확인해볼 수도 있습니다.</h6>
+                    <h6>스텟을 전부 4로 설정하여 해당 레벨까지 활용할 수 있는 AP의 수량을 확인해 볼 수도 있습니다.</h6>
                 </div>
             </div>
             <div class="apr-box apr-content-desc">
                 <h4>기본 레벨 업 계산</h4>
                 <div style="width: fit-content; margin-right: 1rem;">
-                    <h6>피작과 마나작, 순 인트 올리기, 인트기어 착용 없이 얻게 되는 최대 HP와 최대 MP를 확인합니다.</h6>
-                    <h6>전직 보너스와 HP 및 MP 증가량 스킬 보너스가 적용되어 계산됩니다.</h6>
-                    <h6>마법사는 순 인트를 전혀 올리지 않는 것으로 계산됩니다.</h6>
-                    <h6>순 인트를 올리게 될 경우, 마나작 계산 도구에서 계산된 인트 효과 MP를 더하세요.</h6>
+                    <h6>목표 레벨까지 레벨 업을 하면서 얻게 되는 순수 최대 HP와 최대 MP를 확인합니다.</h6>
+                    <br />
+                    <h6>실제 레벨 업시 최대 HP와 최대 MP 상승량은 범위 내 무작위입니다. 작동 방법을 설정할 수 있습니다.</h6>
+                    <br />
+                    <h6>피작과 마나작, 순 인트 올리기(마법사 포함), 인트기어 착용이 반영되지 않습니다.</h6>
+                    <h6>전직 보너스와 HP 및 MP 증가량 스킬(선 마스터) 보너스가 적용되어 계산됩니다.</h6>
+                    <br />
+                    <h6>마법사의 경우 마나작 계산 도구로 순 인트, 마나작 효과를 더하여 보시기 바랍니다.</h6>
+                    <br />
                     <h6>목표 레벨에서 부족한 양을 확인할 수 있습니다.</h6>
-                    <h6>필요한 양을 확인하고 피작과 마나작, 순인트, 인트기어의 정도를 결정하세요.</h6>
+                    <h6>필요한 양을 확인하고 피작과 마나작, 순 인트, 인트기어의 정도를 결정하세요.</h6>
                 </div>
             </div>
             <div class="apr-box apr-content-desc">
                 <h4>피작 계산</h4>
                 <div style="width: fit-content; margin-right: 1rem;">
                     <h6>현재 갖고있는 순수 최대 MP로부터 피작을 최대 얼마나 할 수 있는지 계산합니다.</h6>
+                    <h6>여유 MP를 전부 피작에 사용했을 때 얻게 되는 최대 HP와 APR 소비량을 표기합니다.</h6>
+                    <br />
                     <h6>피작에 관해서는 피작과 마나작 가이드, 직업별 가이드를 참고하세요.</h6>
                 </div>
             </div>
@@ -213,8 +220,13 @@
                 <div style="width: fit-content; margin-right: 1rem;">
                     <h6><b>인트의 영향에 의한 추가 상승량만 표기되며, 직업별 레벨 업 기본상승량은 포함되어 있지 않습니다.</b></h6>
                     <h6>직업별 레벨 업 기본 상승량은 기본 레벨 업 계산 도구를 이용해서 확인하세요.</h6>
-                    <h6>마나작을 하지 않는 직업이라면 마나작 건너뛰기를 선택하세요.</h6>
-                    <h6>순 인트를 지속해서 투자해야하거나 마법사라면 INT에 재투자를 선택하세요.</h6>
+                    <br />
+                    <h6>인트에 재투자를 하면, 레벨 업마다 순 인트를 5 올립니다. 전직 보너스는 반영되지 않습니다.</h6>
+                    <h6>순 인트를 지속해서 투자해야 하거나 마법사라면 인트에 재투자를 선택하세요.</h6>
+                    <br />
+                    <h6>마나작 안 함을 선택하면, 레벨 업을 하고 마나작을 하지 않습니다.</h6>
+                    <h6>전사처럼 마나작을 하지 않는 직업이라면 마나작 안 함을 선택하세요.</h6>
+                    <br />
                     <h6>마나작에 관해서는 피작과 마나작 가이드, 직업별 가이드를 참고하세요.</h6>
                 </div>
             </div>
